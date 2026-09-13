@@ -1,0 +1,722 @@
+[
+  {
+    "input": {
+      "area_sqft": 499.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 20,
+      "parking_spaces": 1,
+      "locality": "Anna Nagar",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 6927007.452122864
+  },
+  {
+    "input": {
+      "area_sqft": 1199.0,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "house_age": 12,
+      "parking_spaces": 1,
+      "locality": "Chromepet",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 7418961.621854061
+  },
+  {
+    "input": {
+      "area_sqft": 1905.0,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "house_age": 0,
+      "parking_spaces": 1,
+      "locality": "Thoraipakkam",
+      "furnishing": "Furnished"
+    },
+    "expected": 21202552.22354311
+  },
+  {
+    "input": {
+      "area_sqft": 1172.0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "house_age": 29,
+      "parking_spaces": 2,
+      "locality": "Kovur",
+      "furnishing": "Furnished"
+    },
+    "expected": 7621370.024087397
+  },
+  {
+    "input": {
+      "area_sqft": 1513.0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "house_age": 21,
+      "parking_spaces": 0,
+      "locality": "Velachery",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 13861519.801217632
+  },
+  {
+    "input": {
+      "area_sqft": 2264.0,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "house_age": 25,
+      "parking_spaces": 1,
+      "locality": "Kodambakkam",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 25513330.563901022
+  },
+  {
+    "input": {
+      "area_sqft": 1058.0,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "house_age": 35,
+      "parking_spaces": 0,
+      "locality": "Chromepet",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 5792996.558511227
+  },
+  {
+    "input": {
+      "area_sqft": 550.0,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "house_age": 14,
+      "parking_spaces": 2,
+      "locality": "Karapakkam",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 5295468.247612526
+  },
+  {
+    "input": {
+      "area_sqft": 1912.0,
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "house_age": 8,
+      "parking_spaces": 0,
+      "locality": "Kilpauk",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 28738899.121515315
+  },
+  {
+    "input": {
+      "area_sqft": 513.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 3,
+      "parking_spaces": 0,
+      "locality": "Thiruporur",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 2292726.9746002452
+  },
+  {
+    "input": {
+      "area_sqft": 2398.0,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "house_age": 12,
+      "parking_spaces": 0,
+      "locality": "Velachery",
+      "furnishing": "Furnished"
+    },
+    "expected": 24379259.057230838
+  },
+  {
+    "input": {
+      "area_sqft": 1640.0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "house_age": 21,
+      "parking_spaces": 1,
+      "locality": "Velachery",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 15428483.486405537
+  },
+  {
+    "input": {
+      "area_sqft": 390.0,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "house_age": 4,
+      "parking_spaces": 2,
+      "locality": "Karapakkam",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 3935798.864227507
+  },
+  {
+    "input": {
+      "area_sqft": 1200.0,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "house_age": 20,
+      "parking_spaces": 0,
+      "locality": "Kodambakkam",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 13599987.22567397
+  },
+  {
+    "input": {
+      "area_sqft": 2747.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 30,
+      "parking_spaces": 1,
+      "locality": "Kundrathur",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 13729377.22364274
+  },
+  {
+    "input": {
+      "area_sqft": 2229.0,
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "house_age": 8,
+      "parking_spaces": 2,
+      "locality": "Navalur",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 18274565.302484095
+  },
+  {
+    "input": {
+      "area_sqft": 890.0,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "house_age": 25,
+      "parking_spaces": 2,
+      "locality": "Porur",
+      "furnishing": "Furnished"
+    },
+    "expected": 6825380.566647023
+  },
+  {
+    "input": {
+      "area_sqft": 1216.0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "house_age": 25,
+      "parking_spaces": 1,
+      "locality": "Ramapuram",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 11549521.963281114
+  },
+  {
+    "input": {
+      "area_sqft": 1562.0,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "house_age": 35,
+      "parking_spaces": 1,
+      "locality": "Chromepet",
+      "furnishing": "Furnished"
+    },
+    "expected": 8745394.878029412
+  },
+  {
+    "input": {
+      "area_sqft": 596.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 16,
+      "parking_spaces": 1,
+      "locality": "Chromepet",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 3596784.7233180283
+  },
+  {
+    "input": {
+      "area_sqft": 2702.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 35,
+      "parking_spaces": 2,
+      "locality": "Adyar",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 39164550.96690514
+  },
+  {
+    "input": {
+      "area_sqft": 1149.0,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "house_age": 17,
+      "parking_spaces": 0,
+      "locality": "Karapakkam",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 10819130.529588051
+  },
+  {
+    "input": {
+      "area_sqft": 516.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 9,
+      "parking_spaces": 2,
+      "locality": "Anna Nagar",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 7517139.346724442
+  },
+  {
+    "input": {
+      "area_sqft": 353.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 35,
+      "parking_spaces": 2,
+      "locality": "Thiruporur",
+      "furnishing": "Furnished"
+    },
+    "expected": 1354352.8688628997
+  },
+  {
+    "input": {
+      "area_sqft": 2148.0,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "house_age": 27,
+      "parking_spaces": 2,
+      "locality": "Chromepet",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 12783609.722260721
+  },
+  {
+    "input": {
+      "area_sqft": 1836.0,
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "house_age": 26,
+      "parking_spaces": 2,
+      "locality": "Teynampet",
+      "furnishing": "Furnished"
+    },
+    "expected": 48778934.69138243
+  },
+  {
+    "input": {
+      "area_sqft": 2080.0,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "house_age": 17,
+      "parking_spaces": 0,
+      "locality": "Ramapuram",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 20421100.947867002
+  },
+  {
+    "input": {
+      "area_sqft": 1842.0,
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "house_age": 31,
+      "parking_spaces": 0,
+      "locality": "Thoraipakkam",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 16766367.978779875
+  },
+  {
+    "input": {
+      "area_sqft": 2401.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 14,
+      "parking_spaces": 0,
+      "locality": "Adyar",
+      "furnishing": "Furnished"
+    },
+    "expected": 41956290.92120579
+  },
+  {
+    "input": {
+      "area_sqft": 528.0,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "house_age": 7,
+      "parking_spaces": 1,
+      "locality": "Kundrathur",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 3000384.3473931486
+  },
+  {
+    "input": {
+      "area_sqft": 1265.0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "house_age": 18,
+      "parking_spaces": 1,
+      "locality": "Thiruporur",
+      "furnishing": "Furnished"
+    },
+    "expected": 5248448.817319009
+  },
+  {
+    "input": {
+      "area_sqft": 1677.0,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "house_age": 35,
+      "parking_spaces": 1,
+      "locality": "Koyambedu",
+      "furnishing": "Furnished"
+    },
+    "expected": 18426467.903267086
+  },
+  {
+    "input": {
+      "area_sqft": 2138.0,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "house_age": 2,
+      "parking_spaces": 1,
+      "locality": "Ramapuram",
+      "furnishing": "Furnished"
+    },
+    "expected": 24915923.549990762
+  },
+  {
+    "input": {
+      "area_sqft": 2038.0,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "house_age": 23,
+      "parking_spaces": 1,
+      "locality": "Anna Nagar",
+      "furnishing": "Furnished"
+    },
+    "expected": 30514955.378942665
+  },
+  {
+    "input": {
+      "area_sqft": 597.0,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "house_age": 27,
+      "parking_spaces": 1,
+      "locality": "Anna Nagar",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 7574234.05690614
+  },
+  {
+    "input": {
+      "area_sqft": 1769.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 30,
+      "parking_spaces": 2,
+      "locality": "Thiruporur",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 6824606.3720436925
+  },
+  {
+    "input": {
+      "area_sqft": 2603.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 22,
+      "parking_spaces": 2,
+      "locality": "Teynampet",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 66306456.89563939
+  },
+  {
+    "input": {
+      "area_sqft": 2647.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 3,
+      "parking_spaces": 0,
+      "locality": "Chromepet",
+      "furnishing": "Furnished"
+    },
+    "expected": 18566793.8763356
+  },
+  {
+    "input": {
+      "area_sqft": 2022.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 9,
+      "parking_spaces": 2,
+      "locality": "Thiruporur",
+      "furnishing": "Furnished"
+    },
+    "expected": 9225629.641787264
+  },
+  {
+    "input": {
+      "area_sqft": 2144.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 16,
+      "parking_spaces": 0,
+      "locality": "Karapakkam",
+      "furnishing": "Furnished"
+    },
+    "expected": 20294650.290913593
+  },
+  {
+    "input": {
+      "area_sqft": 1058.0,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "house_age": 35,
+      "parking_spaces": 1,
+      "locality": "Kilpauk",
+      "furnishing": "Furnished"
+    },
+    "expected": 13792645.932719689
+  },
+  {
+    "input": {
+      "area_sqft": 921.0,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "house_age": 22,
+      "parking_spaces": 1,
+      "locality": "Ramapuram",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 8826904.338741386
+  },
+  {
+    "input": {
+      "area_sqft": 2212.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 6,
+      "parking_spaces": 2,
+      "locality": "Velachery",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 22748707.6375225
+  },
+  {
+    "input": {
+      "area_sqft": 2351.0,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "house_age": 26,
+      "parking_spaces": 0,
+      "locality": "Anna Nagar",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 33638822.34616783
+  },
+  {
+    "input": {
+      "area_sqft": 1443.0,
+      "bedrooms": 3,
+      "bathrooms": 4,
+      "house_age": 30,
+      "parking_spaces": 2,
+      "locality": "Kodambakkam",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 15443696.061287154
+  },
+  {
+    "input": {
+      "area_sqft": 1605.0,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "house_age": 12,
+      "parking_spaces": 1,
+      "locality": "Adyar",
+      "furnishing": "Furnished"
+    },
+    "expected": 28482522.699994076
+  },
+  {
+    "input": {
+      "area_sqft": 1092.0,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "house_age": 26,
+      "parking_spaces": 1,
+      "locality": "Kovur",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 7062217.49062483
+  },
+  {
+    "input": {
+      "area_sqft": 1056.0,
+      "bedrooms": 3,
+      "bathrooms": 4,
+      "house_age": 8,
+      "parking_spaces": 0,
+      "locality": "Kodambakkam",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 12990488.644637369
+  },
+  {
+    "input": {
+      "area_sqft": 2224.0,
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "house_age": 24,
+      "parking_spaces": 0,
+      "locality": "Kodambakkam",
+      "furnishing": "Furnished"
+    },
+    "expected": 24647348.755027745
+  },
+  {
+    "input": {
+      "area_sqft": 411.0,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "house_age": 13,
+      "parking_spaces": 1,
+      "locality": "Thiruporur",
+      "furnishing": "Furnished"
+    },
+    "expected": 1855191.2826387715
+  },
+  {
+    "input": {
+      "area_sqft": 1099.0,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "house_age": 32,
+      "parking_spaces": 1,
+      "locality": "Thiruporur",
+      "furnishing": "Unfurnished"
+    },
+    "expected": 4356279.407109097
+  },
+  {
+    "input": {
+      "area_sqft": 720.0,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "house_age": 18,
+      "parking_spaces": 1,
+      "locality": "Karapakkam",
+      "furnishing": "Furnished"
+    },
+    "expected": 6913207.2545377705
+  },
+  {
+    "input": {
+      "area_sqft": 1394.0,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "house_age": 9,
+      "parking_spaces": 0,
+      "locality": "Thiruporur",
+      "furnishing": "Furnished"
+    },
+    "expected": 6335573.893609762
+  },
+  {
+    "input": {
+      "area_sqft": 1856.0,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "house_age": 16,
+      "parking_spaces": 1,
+      "locality": "Teynampet",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 49646238.43334554
+  },
+  {
+    "input": {
+      "area_sqft": 1793.0,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "house_age": 7,
+      "parking_spaces": 2,
+      "locality": "Teynampet",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 51506563.661342844
+  },
+  {
+    "input": {
+      "area_sqft": 2529.0,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "house_age": 7,
+      "parking_spaces": 2,
+      "locality": "Kodambakkam",
+      "furnishing": "Furnished"
+    },
+    "expected": 31861143.447233982
+  },
+  {
+    "input": {
+      "area_sqft": 2001.0,
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "house_age": 19,
+      "parking_spaces": 2,
+      "locality": "Egmore",
+      "furnishing": "Furnished"
+    },
+    "expected": 37366545.676617816
+  },
+  {
+    "input": {
+      "area_sqft": 1172.0,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "house_age": 8,
+      "parking_spaces": 1,
+      "locality": "Ramapuram",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 12719447.214934774
+  },
+  {
+    "input": {
+      "area_sqft": 1385.0,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "house_age": 30,
+      "parking_spaces": 2,
+      "locality": "Anna Nagar",
+      "furnishing": "Furnished"
+    },
+    "expected": 19756791.40164674
+  },
+  {
+    "input": {
+      "area_sqft": 2377.0,
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "house_age": 32,
+      "parking_spaces": 1,
+      "locality": "Porur",
+      "furnishing": "Semi-Furnished"
+    },
+    "expected": 16305345.175868658
+  }
+]

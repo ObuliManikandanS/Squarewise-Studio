@@ -1,0 +1,85 @@
+{
+  "best_model": "Gradient Boosting",
+  "data_kind": "synthetic",
+  "training_sha256": "ab3d75cb65454d2a54264f835da44b09b3e0000ecee09018168235a1338ec306",
+  "selection": "Lowest mean 5-fold development CV MAE in INR; holdout never used for selection",
+  "metrics": {
+    "MAE_INR": 1989938.157281307,
+    "RMSE_INR": 3387603.2134202924,
+    "R2": 0.9380794121283619,
+    "MAPE_percent": 11.98162010627302,
+    "interval_coverage_percent": 89.79166666666667
+  },
+  "comparison": [
+    {
+      "model": "Gradient Boosting",
+      "cv_mae_inr": 1744698.561900944,
+      "cv_std_inr": 99586.06451034703
+    },
+    {
+      "model": "Random Forest",
+      "cv_mae_inr": 1760892.424068495,
+      "cv_std_inr": 84397.47107167871
+    },
+    {
+      "model": "Extra Trees",
+      "cv_mae_inr": 1762985.0160494074,
+      "cv_std_inr": 85872.7843649876
+    },
+    {
+      "model": "Log-rate Ridge",
+      "cv_mae_inr": 1838021.2331688632,
+      "cv_std_inr": 116262.73575983665
+    },
+    {
+      "model": "Median rate baseline",
+      "cv_mae_inr": 6147357.717282616,
+      "cv_std_inr": 335436.4260954472
+    }
+  ],
+  "relative_interval_q": 0.23444969897864376,
+  "interval_nominal_coverage": 0.9,
+  "localities": [
+    "Adyar",
+    "Anna Nagar",
+    "Chromepet",
+    "Egmore",
+    "Karapakkam",
+    "Kilpauk",
+    "Kodambakkam",
+    "Kovur",
+    "Koyambedu",
+    "Kundrathur",
+    "Navalur",
+    "Porur",
+    "Ramapuram",
+    "Teynampet",
+    "Thiruporur",
+    "Thoraipakkam",
+    "Velachery"
+  ],
+  "feature_bounds": {
+    "area_sqft": [350.0, 2997.0],
+    "bedrooms": [1.0, 5.0],
+    "bathrooms": [1.0, 6.0],
+    "house_age": [0.0, 35.0],
+    "parking_spaces": [0.0, 2.0]
+  },
+  "split_rows": {
+    "fit": 1560,
+    "calibration": 360,
+    "test": 480
+  },
+  "seed": 42,
+  "area_basis": "synthetic_listed_area",
+  "price_basis": "synthetic",
+  "date_range": ["2026-06-30", "2026-06-30"],
+  "versions": {
+    "python": "3.12.14",
+    "scikit-learn": "1.8.0",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "joblib": "1.5.3"
+  },
+  "limitations": "Random property-group holdout; not future-time validation. Synthetic scores are not market accuracy. Interval coverage requires exchangeable future records; not guaranteed by locality."
+}
