@@ -1,0 +1,4 @@
+import {z} from 'zod';
+import {identity,list,store,key,sameOrigin,failure} from '@/lib/storage';
+const schema=z.object({subject:z.enum(['Question','Data correction','Privacy request']),message:z.string().trim().min(20).max(3000),website:z.string().max(0)});
+export async function POST(req:Request){try{sameOrigin(req);const user=await identity();const input=schema.parse(await req.json());const recent=await list(user.id,'inquiries');if(recent.filter(r=>Date.now()-Date.parse(r.createdAt)<86400000).length>=3)throw Error('Please limit inquiries to three per day.');const id=crypto.randomUUID();await store().setJSON(key(user.id,'inquiries',id),{id,...input,email:user.email,createdAt:new Date().toISOString()});return Response.json({id,message:'Your inquiry has been stored. No response-time commitment is available.'});}catch(e){return failure(e)}}

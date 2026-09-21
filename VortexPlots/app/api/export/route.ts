@@ -1,0 +1,4 @@
+import {identity,list,store,sameOrigin,failure} from '@/lib/storage';
+export const dynamic='force-dynamic';
+export async function GET(){try{const u=await identity();const data={properties:await list(u.id,'properties'),estimates:await list(u.id,'estimates'),reports:await list(u.id,'pdfs'),searches:await list(u.id,'searches'),inquiries:await list(u.id,'inquiries')};return new Response(JSON.stringify(data,null,2),{headers:{'Content-Type':'application/json','Content-Disposition':'attachment; filename="vortexplots-account-export.json"','Cache-Control':'private, no-store'}})}catch(e){return failure(e)}}
+export async function DELETE(req:Request){try{sameOrigin(req);const u=await identity();const db=store();const all=await db.list({prefix:`${encodeURIComponent(u.id)}/`});for(const b of all.blobs)await db.delete(b.key);return Response.json({ok:true});}catch(e){return failure(e)}}

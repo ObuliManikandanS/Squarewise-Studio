@@ -1,0 +1,529 @@
+[
+  {
+    "id": "ariyalur",
+    "name": "Ariyalur",
+    "region": "Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Ariyalur Town",
+      "Jayankondam",
+      "Udayarpalayam",
+      "Sendurai"
+    ]
+  },
+  {
+    "id": "chengalpattu",
+    "name": "Chengalpattu",
+    "region": "Chennai Periphery",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Chengalpattu",
+      "Tambaram",
+      "Guduvancheri",
+      "Maraimalai Nagar",
+      "Kelambakkam",
+      "Mahabalipuram",
+      "Chromepet"
+    ]
+  },
+  {
+    "id": "chennai",
+    "name": "Chennai",
+    "region": "Chennai Metro",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Adyar",
+      "Anna Nagar",
+      "Ambattur",
+      "Besant Nagar",
+      "Kolathur",
+      "Nanganallur",
+      "OMR - Sholinganallur",
+      "Porur",
+      "T Nagar",
+      "Velachery"
+    ]
+  },
+  {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "region": "West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "RS Puram",
+      "Gandhipuram",
+      "Peelamedu",
+      "Saravanampatti",
+      "Singanallur",
+      "Vadavalli"
+    ]
+  },
+  {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "region": "Coastal",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Cuddalore OT",
+      "Manjakuppam",
+      "Nellikuppam",
+      "Panruti",
+      "Chidambaram"
+    ]
+  },
+  {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "region": "North-West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Dharmapuri Town",
+      "Harur",
+      "Palacode",
+      "Pennagaram"
+    ]
+  },
+  {
+    "id": "dindigul",
+    "name": "Dindigul",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Dindigul Town",
+      "Palani",
+      "Oddanchatram",
+      "Kodaikanal"
+    ]
+  },
+  {
+    "id": "erode",
+    "name": "Erode",
+    "region": "West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Erode Central",
+      "Perundurai",
+      "Bhavani",
+      "Gobichettipalayam",
+      "Sathyamangalam"
+    ]
+  },
+  {
+    "id": "kallakurichi",
+    "name": "Kallakurichi",
+    "region": "North-Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Kallakurichi Town",
+      "Ulundurpet",
+      "Sankarapuram",
+      "Chinnasalem"
+    ]
+  },
+  {
+    "id": "kancheepuram",
+    "name": "Kancheepuram",
+    "region": "Chennai Periphery",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Kancheepuram Town",
+      "Sriperumbudur",
+      "Oragadam",
+      "Walajabad",
+      "Uthiramerur"
+    ]
+  },
+  {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "region": "Far South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Nagercoil",
+      "Marthandam",
+      "Kuzhithurai",
+      "Colachel",
+      "Kanyakumari"
+    ]
+  },
+  {
+    "id": "karur",
+    "name": "Karur",
+    "region": "Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Karur Town",
+      "Thanthonimalai",
+      "Kulithalai",
+      "Aravakurichi"
+    ]
+  },
+  {
+    "id": "krishnagiri",
+    "name": "Krishnagiri",
+    "region": "North-West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Hosur",
+      "Krishnagiri Town",
+      "Denkanikottai",
+      "Bargur",
+      "Pochampalli"
+    ]
+  },
+  {
+    "id": "madurai",
+    "name": "Madurai",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Anna Nagar",
+      "KK Nagar",
+      "Mattuthavani",
+      "Thirunagar",
+      "Othakadai",
+      "Avaniyapuram"
+    ]
+  },
+  {
+    "id": "mayiladuthurai",
+    "name": "Mayiladuthurai",
+    "region": "Delta",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Mayiladuthurai Town",
+      "Sirkazhi",
+      "Kuthalam",
+      "Tharangambadi"
+    ]
+  },
+  {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "region": "Delta",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Nagapattinam Town",
+      "Velankanni",
+      "Kilvelur",
+      "Vedaranyam"
+    ]
+  },
+  {
+    "id": "namakkal",
+    "name": "Namakkal",
+    "region": "West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Namakkal Town",
+      "Tiruchengode",
+      "Rasipuram",
+      "Paramathi Velur",
+      "Kumarapalayam"
+    ]
+  },
+  {
+    "id": "the-nilgiris",
+    "name": "The Nilgiris",
+    "region": "Hill",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Ooty",
+      "Coonoor",
+      "Kotagiri",
+      "Gudalur"
+    ]
+  },
+  {
+    "id": "perambalur",
+    "name": "Perambalur",
+    "region": "Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Perambalur Town",
+      "Kunnam",
+      "Veppanthattai",
+      "Alathur"
+    ]
+  },
+  {
+    "id": "pudukkottai",
+    "name": "Pudukkottai",
+    "region": "Central-South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Pudukkottai Town",
+      "Aranthangi",
+      "Iluppur",
+      "Thirumayam"
+    ]
+  },
+  {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "region": "South Coast",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Ramanathapuram Town",
+      "Paramakudi",
+      "Rameswaram",
+      "Keelakarai"
+    ]
+  },
+  {
+    "id": "ranipet",
+    "name": "Ranipet",
+    "region": "North",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Ranipet Town",
+      "Arcot",
+      "Walajapet",
+      "Sholinghur",
+      "Arakkonam"
+    ]
+  },
+  {
+    "id": "salem",
+    "name": "Salem",
+    "region": "West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Hasthampatti",
+      "Fairlands",
+      "Suramangalam",
+      "Ammapet",
+      "Omalur",
+      "Attur"
+    ]
+  },
+  {
+    "id": "sivaganga",
+    "name": "Sivaganga",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Sivaganga Town",
+      "Karaikudi",
+      "Devakottai",
+      "Manamadurai"
+    ]
+  },
+  {
+    "id": "tenkasi",
+    "name": "Tenkasi",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tenkasi Town",
+      "Courtallam",
+      "Sankarankovil",
+      "Kadayanallur"
+    ]
+  },
+  {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "region": "Delta",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Thanjavur Town",
+      "Kumbakonam",
+      "Pattukkottai",
+      "Papanasam",
+      "Orathanadu"
+    ]
+  },
+  {
+    "id": "theni",
+    "name": "Theni",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Theni Allinagaram",
+      "Periyakulam",
+      "Bodinayakanur",
+      "Cumbum"
+    ]
+  },
+  {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "region": "South Coast",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Thoothukudi Town",
+      "Kovilpatti",
+      "Tiruchendur",
+      "Ettayapuram"
+    ]
+  },
+  {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "region": "Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Srirangam",
+      "Thillai Nagar",
+      "Woraiyur",
+      "KK Nagar",
+      "Cantonment",
+      "Samayapuram"
+    ]
+  },
+  {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Palayamkottai",
+      "Tirunelveli Town",
+      "Vannarpettai",
+      "Melapalayam",
+      "Nanguneri"
+    ]
+  },
+  {
+    "id": "tirupathur",
+    "name": "Tirupathur",
+    "region": "North",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tirupathur Town",
+      "Vaniyambadi",
+      "Ambur",
+      "Natrampalli"
+    ]
+  },
+  {
+    "id": "tiruppur",
+    "name": "Tiruppur",
+    "region": "West",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tiruppur Central",
+      "Avinashi",
+      "Palladam",
+      "Udumalaipettai",
+      "Kangeyam"
+    ]
+  },
+  {
+    "id": "tiruvallur",
+    "name": "Tiruvallur",
+    "region": "Chennai Periphery",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tiruvallur Town",
+      "Avadi",
+      "Poonamallee",
+      "Pattabiram",
+      "Gummidipoondi",
+      "Ponneri"
+    ]
+  },
+  {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "region": "North-Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tiruvannamalai Town",
+      "Arani",
+      "Cheyyar",
+      "Polur",
+      "Vandavasi"
+    ]
+  },
+  {
+    "id": "tiruvarur",
+    "name": "Tiruvarur",
+    "region": "Delta",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Tiruvarur Town",
+      "Mannargudi",
+      "Thiruthuraipoondi",
+      "Nannilam"
+    ]
+  },
+  {
+    "id": "vellore",
+    "name": "Vellore",
+    "region": "North",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Vellore Town",
+      "Katpadi",
+      "Sathuvachari",
+      "Gudiyatham",
+      "Pernambut"
+    ]
+  },
+  {
+    "id": "viluppuram",
+    "name": "Viluppuram",
+    "region": "North-Central",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Viluppuram Town",
+      "Tindivanam",
+      "Gingee",
+      "Kottakuppam",
+      "Vikravandi"
+    ]
+  },
+  {
+    "id": "virudhunagar",
+    "name": "Virudhunagar",
+    "region": "South",
+    "sourceUrl": "https://igod.gov.in/sg/TN/E042/organizations",
+    "verifiedAt": "2026-09-20",
+    "localities": [
+      "Virudhunagar Town",
+      "Sivakasi",
+      "Rajapalayam",
+      "Aruppukkottai",
+      "Srivilliputhur"
+    ]
+  }
+]

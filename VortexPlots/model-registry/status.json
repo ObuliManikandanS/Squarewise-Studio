@@ -1,0 +1,1 @@
+{"status":"not_trained","modelVersion":null,"datasetVersion":"tn-2026-09-20.4","metrics":null,"reason":"No licensed verified property-level training observations accepted. Offline training workflow exists; no model is deployed."}

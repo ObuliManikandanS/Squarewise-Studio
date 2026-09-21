@@ -1,0 +1,2 @@
+Source: https://github.com/datta07/INDIAN-SHAPEFILES/blob/master/STATES/TAMIL%20NADU/TAMIL%20NADU_DISTRICTS.geojson
+Retrieved 2026-09-21. MIT license, retained alongside this file. 38 district polygons. Original geometry simplified with 0.0015 degree tolerance for visualization; district aliases normalized. Source attributes mix vintages from 2011 to 2022. Not certified current or cadastral boundaries.
