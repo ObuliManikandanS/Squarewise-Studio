@@ -8,7 +8,7 @@ services:
     plan: free
     region: singapore
     rootDir: VortexPlots
-    buildCommand: corepack pnpm install --frozen-lockfile && corepack pnpm build:render
+    buildCommand: corepack pnpm install --frozen-lockfile --prod=false && corepack pnpm build:render
     startCommand: corepack pnpm start:render
     healthCheckPath: /api/health
     envVars:
