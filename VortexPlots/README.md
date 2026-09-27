@@ -5,7 +5,7 @@ Tamil Nadu property research workspace. This is a working implementation with ex
 ## Available in this version
 
 - Responsive district explorer with Leaflet / OpenStreetMap and 38 district reference polygons.
-- 185 selected search localities, district / locality routes and a five-property-type estimator.
+- Selected directory and uploaded advertised localities, district/locality routes, and separate land/building property types.
 - Strict separation of asking, transaction, guideline and user-scenario prices.
 - Area conversion (sq ft, sq m, cent, acre, ground).
 - Carpet / built-up / super built-up analysis, loading factor, space efficiency and true usable cost.
@@ -14,11 +14,15 @@ Tamil Nadu property research workspace. This is a working implementation with ex
 - Account portfolio and report snapshot APIs, report filters and owner-scoped deletion.
 - Data coverage and source registry views.
 - Observation ingestion with raw-record preservation, normalization, duplicate removal, provenance/date validation and atomic replacement.
-- Offline Python training workflow: median, ridge and random forest comparisons, district holdout, future holdout, evaluation registry. Training does not deploy a model.
+- Reproducible Ridge training and locality-grouped validation; exported coefficients drive opt-in website predictions.
 
 ## Current evidence
 
-Dataset version: tn-2026-09-20.4. Accepted price observations: **0**. Model version and evaluation metrics: **unavailable**. No verified transaction, guideline or asking prices are shipped. Manual rates are unverified user scenarios. An unknown value remains null, never zero or an invented district average.
+Dataset version: tn-2026-09-27.2. The user-provided CSV contains **628 screened asking advertisements across 38 districts**, plus two earlier source-checked asking observations. No verified transaction or official guideline values are shipped. Collection dates are not price-effective dates. District/locality assignment follows the supplied portal classification, with 31 source-corrected assignments; this is not cadastral verification.
+
+An **experimental Ridge regression on log asking rate** is trained using district, property type, area basis and log area. A locality-grouped holdout uses 478 training and 150 validation records; five-fold grouped CV selects alpha using only the training partition. Holdout MAE: 1590.63 INR/sq ft, RMSE: 4926.35 INR/sq ft, R²: 0.28148. Median baseline MAE: 2064.05 INR/sq ft. This is modest predictive performance on advertisements, not validated transaction-price accuracy. No calibrated interval or accuracy percentage is claimed. The final artifact is refit on all 628 records, separately from holdout evaluation.
+
+Reproduce with the pinned Python packages in requirements-model.txt and run python scripts/train-ridge.py. The raw CSV, normalized records, source SHA-256, validation IDs, coefficients and sklearn parity vectors are committed. Browser predictions are opt-in, asking-only, limited to district/type/basis groups with at least three records, and reject extrapolation beyond observed area bounds. User-supplied district reference ranges remain visibly unverified and are excluded from training.
 
 38 district names are checked against https://igod.gov.in/sg/TN/E042/organizations. Boundary source, MIT license and limitations are in public/maps/. Polygons contain mixed source vintages through 2022 and are simplified for visualization. They are not certified current or cadastral boundaries. Localities are a selected directory, not an official exhaustive village, ward, municipality or taluk register. Exact locality coordinates and historical prices are not populated.
 
