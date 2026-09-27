@@ -1,3 +1,4 @@
+import {safeFailure} from './http';
 import {headers} from 'next/headers';
 import {getAuth} from './auth-server.mjs';
 import {database} from './database.mjs';
@@ -13,4 +14,4 @@ export function store(){return {
 export function key(userId:string,kind:string,id:string){if(!/^[a-z0-9-]{1,80}$/i.test(id))throw Error('Invalid record identifier');return `${encodeURIComponent(userId)}/${kind}/${id}`;}
 export async function list(userId:string,kind:string){const db=store(),rows=await db.list({prefix:`${encodeURIComponent(userId)}/${kind}/`});return (await Promise.all(rows.blobs.map(b=>db.get(b.key,{type:'json'})))).filter(Boolean).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));}
 export function sameOrigin(req:Request){const origin=req.headers.get('origin');const expected=process.env.BETTER_AUTH_URL||process.env.RENDER_EXTERNAL_URL;if(!origin||(expected?origin!==new URL(expected).origin:new URL(origin).host!==(req.headers.get('host')||new URL(req.url).host)))throw Error('ORIGIN_REJECTED');}
-export function failure(e:unknown){const message=e instanceof Error?e.message:'Request failed';const unavailable=/CONFIGURED|ECONN|connection|database|relation|column/i.test(message);const status=message==='AUTH_REQUIRED'?401:message==='ORIGIN_REJECTED'?403:unavailable?503:400;return Response.json({error:message==='AUTH_REQUIRED'?'Sign in to continue.':message==='ORIGIN_REJECTED'?'Request origin rejected.':unavailable?'Saved information is temporarily unavailable. Please try again later.':message},{status,headers:{'Cache-Control':'private, no-store'}});}
+export const failure=safeFailure;

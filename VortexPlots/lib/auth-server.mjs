@@ -23,12 +23,13 @@ export function authOptions() {
     appName: 'VortexPlots', baseURL, secret: process.env.BETTER_AUTH_SECRET,
     trustedOrigins: [new URL(baseURL).origin], database: database(),
     emailAndPassword: {
-      enabled: true, minPasswordLength: 12, maxPasswordLength: 128, autoSignIn: false,
+      enabled: true, minPasswordLength: 12, maxPasswordLength: 128, autoSignIn: true,
       requireEmailVerification: mailReady(), revokeSessionsOnPasswordReset: true,
       ...(mailReady() ? {sendResetPassword: async ({user, url}) => sendAccountMail(user.email, 'Reset your VortexPlots password', url)} : {}),
     },
     ...(mailReady() ? {emailVerification: {sendOnSignUp: true, sendVerificationEmail: async ({user, url}) => sendAccountMail(user.email, 'Verify your VortexPlots email', url)}} : {}),
-    session: {expiresIn: 60 * 60 * 24 * 7, updateAge: 60 * 60 * 24},
+    user: {deleteUser: {enabled: true}},
+    session: {freshAge: 300, expiresIn: 60 * 60 * 24 * 7, updateAge: 60 * 60 * 24},
     rateLimit: {enabled: true, storage: 'database', window: 60, max: 60,
       customRules: {'/sign-in/email': {window: 60, max: 5}, '/sign-up/email': {window: 60, max: 3}, '/request-password-reset': {window: 60, max: 3}}},
   };
