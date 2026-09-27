@@ -29,6 +29,11 @@ try {
     scope TEXT NOT NULL, actor TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     window_start TIMESTAMPTZ NOT NULL, count INTEGER NOT NULL, PRIMARY KEY(scope,actor)
   );`);
+  await connection.query(`CREATE TABLE IF NOT EXISTS review_helpful (
+    review_id UUID NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
+    owner_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(), PRIMARY KEY(review_id,owner_id)
+  )`);
   console.log('Account, research and review schema is ready.');
 } finally {
   await connection.query('SELECT pg_advisory_unlock(72619411)');

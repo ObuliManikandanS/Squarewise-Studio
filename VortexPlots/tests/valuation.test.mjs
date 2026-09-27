@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {calculate,districts,localities} from '../app/data.ts';
+import {calculate,districts,localities,currentPrices} from '../app/data.ts';
 const base={localityId:'chennai--adyar',propertyType:'Land',area:1,unit:'acre',basis:'Plot area',category:'asking'};
 test('one acre scenario converts exactly without manufacturing an estimate',()=>{const r=calculate({...base,manualRate:100});assert.equal(r.areaSqft,43560);assert.equal(r.total,4356000);assert.equal(r.status,'scenario');assert.equal(r.modelVersion,null);assert.equal(r.range,null)});
-test('no evidence produces null, never zero or a district fallback',()=>{for(const l of localities){const r=calculate({...base,localityId:l.id});assert.equal(r.total,null);assert.equal(r.rate,null)}});
+test('no evidence produces null, never zero or a district fallback',()=>{for(const l of localities.filter(l=>!currentPrices.some(o=>o.localityId===l.id&&o.propertyType==='Land'&&o.basis==='Plot area'))){const r=calculate({...base,localityId:l.id});assert.equal(r.total,null);assert.equal(r.rate,null)}});
 test('invalid inputs and property basis rejected',()=>{for(const patch of [{area:0},{area:NaN},{manualRate:-1},{unit:'invalid'},{localityId:'missing'},{propertyType:'Apartment'}])assert.throws(()=>calculate({...base,...patch}))});
 test('directory has 38 unique districts and correct Chromepet parent',()=>{assert.equal(new Set(districts.map(d=>d.id)).size,38);assert.equal(localities.find(l=>l.name==='Chromepet').district,'Chengalpattu');assert.equal(new Set(localities.map(l=>l.id)).size,localities.length)});
 

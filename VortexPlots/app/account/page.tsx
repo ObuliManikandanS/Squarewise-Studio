@@ -1,2 +1,3 @@
 import { Workspace } from '../workspace';
-export default function Page(){return <Workspace path="/account"/>}
+import {requirePage} from '../../lib/page-session';
+export default async function Page(){await requirePage('/account');return <Workspace path="/account"/>}

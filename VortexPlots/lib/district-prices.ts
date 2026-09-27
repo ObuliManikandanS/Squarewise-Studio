@@ -1,3 +1,4 @@
+import {summarizePrices} from './price-summary.ts';
 import {localities, observations, currentPrices, priceDate, type Observation} from '../app/data.ts';
 
 /** Never mix categories, property types or quoted area bases into one district price. */
@@ -13,7 +14,7 @@ export function districtPriceGroups(districtId:string, records:Observation[]=cur
     groups.set(key,[...(groups.get(key)||[]),row]);
   }
   return [...groups.values()].map(rows=>({
-    category:rows[0].category, propertyType:rows[0].propertyType, basis:rows[0].basis,
+    ...summarizePrices(rows,now)!, category:rows[0].category, propertyType:rows[0].propertyType, basis:rows[0].basis,
     min:Math.min(...rows.map(o=>o.rate)), max:Math.max(...rows.map(o=>o.rate)), count:rows.length,
     average:rows.reduce((n,o)=>n+o.rate,0)/rows.length,
     updated:rows.map(o=>priceDate(o)).sort().at(-1)!,

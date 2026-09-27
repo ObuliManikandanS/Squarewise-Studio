@@ -1,0 +1,59 @@
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {dirname,resolve} from 'node:path';
+const qaRoot=process.env.PGLITE_QA_ROOT||'/tmp/vortex-qa';
+const requireQA=createRequire(resolve(qaRoot,'package.json'));
+const {PGlite}=requireQA('@electric-sql/pglite');
+const {PGLiteSocketServer}=requireQA('@electric-sql/pglite-socket');
+import {spawn} from 'node:child_process';
+import {randomBytes} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+const cwd=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const db=await PGlite.create();
+const socket=new PGLiteSocketServer({db,host:'127.0.0.1',port:55432,maxConnections:100});await socket.start();
+const origin='http://127.0.0.1:4301';
+const env={...process.env,DATABASE_URL:'postgresql://postgres:postgres@127.0.0.1:55432/postgres',BETTER_AUTH_URL:origin,BETTER_AUTH_SECRET:randomBytes(32).toString('hex'),NODE_ENV:'production',RESEND_API_KEY:'',EMAIL_FROM:''};
+let app,logs='';const results=[];
+const password=randomBytes(24).toString('base64url');
+function child(args){const process=spawn('node',args,{cwd,env,stdio:['ignore','pipe','pipe']});process.stdout.on('data',s=>logs+=s);process.stderr.on('data',s=>logs+=s);return process;}
+async function run(args){const p=child(args);await new Promise((resolve,reject)=>p.on('exit',code=>code===0?resolve():reject(Error('Command failed '+args[0]+'\n'+logs))));}
+async function request(path,{method='GET',body,cookie='',redirect='manual'}={}){const r=await fetch(origin+path,{method,redirect,headers:{Origin:origin,'Content-Type':'application/json',...(cookie?{Cookie:cookie}:{})},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(30000)});return r;}
+async function json(path,opts){const r=await request(path,opts),body=await r.json();return {r,body};}
+const pass=name=>{results.push(name);console.log('PASS '+name)};
+try{
+ await run(['scripts/migrate-render.mjs']);pass('Schema migration, including reviews and helpful votes');
+ app=child(['node_modules/next/dist/bin/next','start','-p','4301','-H','127.0.0.1']);
+ for(let i=0;i<80;i++){try{if((await request('/api/health')).ok)break}catch{}await new Promise(r=>setTimeout(r,250));}
+ for(const path of ['/','/estimator','/explore','/locations','/dashboard','/portfolio','/reports','/account','/reviews','/price-intelligence']){const r=await request(path);const html=await r.text();assert.ok([307,308].includes(r.status)||r.status===200&&html.includes('NEXT_REDIRECT'),path+' '+r.status+' '+html.slice(-600));assert.ok((r.headers.get('location')||html).includes('/sign-in'));}pass('Unauthenticated routes redirect server-side to sign-in');
+ const users=[];
+ for(const name of ['Alpha','Beta']){const {r,body}=await json('/api/auth/sign-up/email',{method:'POST',body:{name:'QA '+name,email:'qa-'+name.toLowerCase()+'@example.test',password}});assert.equal(r.status,200,JSON.stringify(body));const cookie=r.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');assert.ok(cookie);users.push({id:body.user.id,cookie,email:body.user.email})}const [a,b]=users;pass('Registration creates real server sessions for two isolated users');
+ const authRedirect=await request('/sign-in',{cookie:a.cookie});assert.ok((authRedirect.headers.get('location')||await authRedirect.text()).includes('/dashboard'));pass('Authenticated sign-in route redirects to Overview');
+ for(const path of ['/dashboard','/estimator','/explore','/locations','/locations/chennai','/locations/chennai/anna-nagar','/price-intelligence','/portfolio','/reports','/reviews','/account','/area-tools','/data-health','/about','/contact','/privacy','/terms']){const r=await request(path,{cookie:a.cookie});assert.equal(r.status,200,path);const html=await r.text();assert.ok(!html.includes('NEXT_HTTP_ERROR_FALLBACK;500'),path)}pass('All workspace, detail and information routes render');
+ const input={localityId:'chennai--anna-nagar',propertyType:'Apartment',basis:'Built-up area',area:1000,unit:'sq ft',category:'asking',label:'QA property'};
+ let saved=await json('/api/records',{method:'POST',cookie:a.cookie,body:{kind:'properties',inputs:input}});assert.equal(saved.r.status,201,JSON.stringify(saved.body));const record=saved.body.record;assert.ok(record.result.rate>0);assert.equal(record.result.total,record.result.rate*1000);
+ await json('/api/records',{method:'POST',cookie:a.cookie,body:{kind:'properties',inputs:input}});
+ assert.equal((await json('/api/records?kind=properties',{cookie:a.cookie})).body.rows.length,1);assert.equal((await json('/api/records?kind=properties',{cookie:b.cookie})).body.rows.length,0);
+ assert.equal((await request('/api/records',{method:'POST',cookie:b.cookie,body:{kind:'properties',id:record.id,inputs:input}})).status,404);pass('Property save, deduplication and cross-user ownership protection');
+ saved=await json('/api/records',{method:'POST',cookie:a.cookie,body:{kind:'properties',id:record.id,inputs:{...input,area:1200}}});assert.equal(saved.body.record.result.areaSqft,1200);pass('Property edits persist and recalculate');
+ await json('/api/records',{method:'POST',cookie:a.cookie,body:{kind:'estimates',inputs:input}});
+ for(const kind of ['localities','searches','comparisons'])assert.ok((await request('/api/research',{method:'POST',cookie:a.cookie,body:{kind,localityIds:[input.localityId]}})).ok);
+ const dash=(await json('/api/dashboard',{cookie:a.cookie})).body;assert.equal(dash.data.properties.length,1);assert.equal(dash.data.estimates.length,1);pass('Saved estimates, searches, localities, comparisons and dashboard refresh');
+ assert.equal((await request('/api/preferences',{method:'PATCH',cookie:a.cookie,body:{productUpdates:true,researchReminders:false}})).status,200);assert.equal((await json('/api/preferences',{cookie:a.cookie})).body.productUpdates,true);assert.equal((await json('/api/preferences',{cookie:b.cookie})).body.productUpdates,false);pass('Notification preferences persist privately');
+ const review={rating:4,title:'QA review entry',description:'A disposable review used to test the isolated QA database.',category:'Estimator',website:''};let reviewResult=await json('/api/reviews',{method:'POST',cookie:a.cookie,body:review});assert.equal(reviewResult.r.status,201,JSON.stringify(reviewResult.body));const reviewId=reviewResult.body.id;assert.equal((await json('/api/reviews')).body.total,0);assert.equal((await request('/api/reviews',{method:'PATCH',cookie:b.cookie,body:{...review,id:reviewId}})).status,404);assert.equal((await request('/api/reviews',{method:'PATCH',cookie:a.cookie,body:{...review,id:reviewId,title:'Edited QA review'}})).status,200);
+ await db.query("UPDATE reviews SET status='approved' WHERE id=$1",[reviewId]);const feed=await json('/api/reviews?rating=4&category=Estimator');assert.equal(feed.r.status,200,JSON.stringify(feed.body));assert.equal(feed.body.total,1);assert.equal(feed.body.rows[0].emailVerified,false);
+ for(let i=0;i<2;i++)assert.equal((await request('/api/reviews',{method:'PATCH',cookie:b.cookie,body:{id:reviewId,helpful:true}})).status,200);assert.equal((await json('/api/reviews')).body.rows[0].helpfulCount,1);
+ assert.equal((await request('/api/reviews',{method:'PATCH',cookie:b.cookie,body:{id:reviewId,report:true,reason:'Disposable QA moderation report'}})).status,200);pass('Review create/edit, moderation, filters, helpful deduplication, reporting and ownership');
+ for(const [section,body]of [['Estimator',{inputs:input}],['LocationAtlas',{type:'locality',districtId:'chennai',localityId:input.localityId,propertyType:'Apartment',basis:'Built-up area',category:'asking',section:'LocationAtlas'}],['PriceIntelligence',{type:'district',districtId:'chennai',propertyType:'Apartment',basis:'Built-up area',checkedOnly:true,section:'PriceIntelligence'}],['MyPortfolio',{type:'portfolio'}],['Overview',{type:'overview'}],['Reviews',{type:'reviews'}],['AreaEfficiency',{type:'efficiency',areas:{carpet:800,built:960,superArea:1200,rate:6000}}]]){const r=await request('/api/report-pdf',{method:'POST',cookie:a.cookie,body});assert.equal(r.status,200,section+' '+await (r.ok?Promise.resolve(''):r.text()));assert.ok(r.headers.get('Content-Disposition').includes('VortexPlots_'+section+'_'));const bytes=Buffer.from(await r.arrayBuffer());assert.equal(bytes.subarray(0,4).toString(),'%PDF');await writeFile(qaRoot+'/'+section+'.pdf',bytes)}pass('Seven report types generate valid PDFs with section-specific filenames');
+ const reports=(await json('/api/report-pdf',{cookie:a.cookie})).body.rows;assert.equal(reports.length,7);assert.equal((await request('/api/report-pdf?id='+reports[0].id,{cookie:b.cookie})).status,404);assert.equal((await request('/api/report-pdf?id='+reports[0].id,{cookie:a.cookie})).status,200);pass('Report history, re-download and cross-user access denial');
+ const contact={name:'QA Alpha',email:a.email,phone:'',subject:'Technical support',message:'Disposable inquiry to verify successful durable storage in QA.',consent:true,website:''};assert.equal((await request('/api/contact',{method:'POST',cookie:a.cookie,body:{...contact,consent:false}})).status,400);const inquiry=await json('/api/contact',{method:'POST',cookie:a.cookie,body:contact});assert.equal(inquiry.r.status,201);assert.ok(inquiry.body.message.includes(inquiry.body.id));assert.equal((await db.query("SELECT count(*)::int AS n FROM saved_records WHERE owner_id=$1 AND key LIKE '%/inquiries/%'",[a.id])).rows[0].n,1);pass('Contact validation failure and genuine stored success with reference');
+ const exported=await json('/api/export',{cookie:a.cookie});assert.equal(exported.body.properties.length,1);assert.equal(exported.body.reports.length,7);pass('Private account export contains saved records');
+ const replacement=randomBytes(24).toString('base64url');const changed=await json('/api/auth/change-password',{method:'POST',cookie:a.cookie,body:{currentPassword:password,newPassword:replacement,revokeOtherSessions:true}});assert.equal(changed.r.status,200,JSON.stringify(changed.body));pass('Password update succeeds with current-password validation');
+ await request('/api/auth/sign-out',{method:'POST',cookie:a.cookie,body:{}});assert.equal((await request('/api/dashboard',{cookie:a.cookie})).status,401);
+ const signIn=await json('/api/auth/sign-in/email',{method:'POST',body:{email:a.email,password:replacement}});assert.equal(signIn.r.status,200,JSON.stringify(signIn.body));a.cookie=signIn.r.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');assert.equal((await request('/dashboard',{cookie:a.cookie})).status,200);pass('Sign-out invalidates session; existing-user sign-in works');
+ assert.equal((await request('/api/reviews',{method:'DELETE',cookie:a.cookie,body:{id:reviewId}})).status,200);assert.equal((await request('/api/records',{method:'DELETE',cookie:a.cookie,body:{kind:'properties',id:record.id}})).status,200);assert.equal((await request('/api/report-pdf',{method:'DELETE',cookie:a.cookie,body:{id:reports[0].id}})).status,200);pass('Review, property and report deletion');
+ assert.equal((await request('/api/auth/delete-user',{method:'POST',cookie:a.cookie,body:{password:replacement}})).status,200);assert.equal((await db.query('SELECT count(*)::int AS n FROM saved_records WHERE owner_id=$1',[a.id])).rows[0].n,0);pass('Account deletion cascades private research');
+ await writeFile(resolve(qaRoot,'results.json'),JSON.stringify({passed:results.length,checks:results},null,2));
+ console.log('INTEGRATION PASS '+results.length);
+}catch(error){console.error(error);console.error(logs.slice(-5000));process.exitCode=1}
+finally{app?.kill('SIGTERM');await socket.stop();await db.close();}
