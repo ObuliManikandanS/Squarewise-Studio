@@ -25,13 +25,14 @@ export function authOptions() {
     emailAndPassword: {
       enabled: true, minPasswordLength: 12, maxPasswordLength: 128, autoSignIn: true,
       requireEmailVerification: mailReady(), revokeSessionsOnPasswordReset: true,
+      resetPasswordTokenExpiresIn: 1800,
       ...(mailReady() ? {sendResetPassword: async ({user, url}) => sendAccountMail(user.email, 'Reset your VortexPlots password', url)} : {}),
     },
-    ...(mailReady() ? {emailVerification: {sendOnSignUp: true, sendVerificationEmail: async ({user, url}) => sendAccountMail(user.email, 'Verify your VortexPlots email', url)}} : {}),
+    ...(mailReady() ? {emailVerification: {sendOnSignUp: true, sendOnSignIn: true, expiresIn: 3600, sendVerificationEmail: async ({user, url}) => sendAccountMail(user.email, 'Verify your VortexPlots email', url)}} : {}),
     user: {deleteUser: {enabled: true}},
     session: {freshAge: 300, expiresIn: 60 * 60 * 24 * 7, updateAge: 60 * 60 * 24},
     rateLimit: {enabled: true, storage: 'database', window: 60, max: 60,
-      customRules: {'/sign-in/email': {window: 60, max: 5}, '/sign-up/email': {window: 60, max: 3}, '/request-password-reset': {window: 60, max: 3}}},
+      customRules: {'/sign-in/email': {window: 60, max: 5}, '/sign-up/email': {window: 60, max: 3}, '/request-password-reset': {window: 60, max: 3}, '/send-verification-email': {window: 60, max: 3}, '/reset-password': {window: 60, max: 5}}},
   };
 }
 /** @type {ReturnType<typeof betterAuth> | undefined} */
