@@ -1,4 +1,4 @@
-import {predictAskingRate} from '../lib/ridge.ts';
+import {predictAskingRate,ridgeSupport} from '../lib/ridge.ts';
 import {usablePrices,summarizePrices} from '../lib/price-summary.ts';
 import directory from '../data/locations.json' with {type:'json'};
 import records from '../data/observations.json' with {type:'json'};
@@ -44,8 +44,10 @@ export function calculate(input:Inputs){
  const evidence=usablePrices(currentPrices.filter(o=>placeIds.has(o.localityId)&&o.propertyType===input.propertyType&&o.basis===input.basis&&o.category===input.category));
  const summary=summarizePrices(evidence);
  const prediction=input.useModel&&input.category==='asking'?predictAskingRate(loc.districtId,input.propertyType,input.basis,areaSqft):null;
+ const modelSupport=input.useModel&&input.manualRate===undefined?ridgeSupport(loc.districtId,input.propertyType,input.basis,areaSqft):null;
+ const availabilityMessage=input.manualRate!==undefined?null:input.useModel?(input.category!=='asking'?'Ridge estimates advertised asking prices only. Select the asking-price category.':prediction?null:modelSupport?.reason||'The model could not produce a valid rate for these inputs.'):summary?null:`No compatible ${input.category} source records for this property type and area basis in ${input.priceScope==='district'?'the selected district':loc.name}.`;
  const used=input.manualRate??(input.useModel?prediction?.rate??null:summary?.representative??null);
- return {inputs:input,locality:loc,areaSqft,rate:used,total:used===null?null:used*areaSqft,summary,scope:input.priceScope==='district'?'Explicit district sample approximation':'Exact locality sample',category:input.manualRate!==undefined?'User scenario (unverified)':prediction?.category||input.category,method:input.manualRate!==undefined?'User rate × applicable area':input.useModel?prediction?.method||'Model unavailable for selected inputs':'(Minimum + source average + maximum) ÷ 3 × applicable area',modelVersion:input.manualRate===undefined&&prediction?prediction.modelVersion:null,datasetVersion,evidence,range:!input.useModel&&input.manualRate===undefined&&summary?[summary.min,summary.max]:null,status:input.manualRate!==undefined?'scenario':prediction?'model':used===null?'unavailable':'sample',createdAt:new Date().toISOString()};
+ return {inputs:input,locality:loc,availabilityMessage,modelSupport,areaSqft,rate:used,total:used===null?null:used*areaSqft,summary,scope:input.manualRate!==undefined?'User-entered planning scenario':input.useModel?'District-level Ridge approximation (not locality-specific)':input.priceScope==='district'?'Explicit district sample approximation':'Exact locality sample',category:input.manualRate!==undefined?'User scenario (unverified)':prediction?.category||input.category,method:input.manualRate!==undefined?'User rate × applicable area':input.useModel?prediction?.method||'Model unavailable for selected inputs':'(Minimum + source average + maximum) ÷ 3 × applicable area',modelVersion:input.manualRate===undefined&&prediction?prediction.modelVersion:null,datasetVersion,evidence,range:!input.useModel&&input.manualRate===undefined&&summary?[summary.min,summary.max]:null,status:input.manualRate!==undefined?'scenario':prediction?'model':used===null?'unavailable':'sample',createdAt:new Date().toISOString()};
 }
 export type Result=ReturnType<typeof calculate>;
 
